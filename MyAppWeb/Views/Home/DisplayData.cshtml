@@ -1,0 +1,133 @@
+﻿@using Newtonsoft.Json
+
+@model List<List<string>>
+
+
+@{
+    ViewData["Title"] = "Excel Data";
+}
+
+<h1>All Employees Attendance Record</h1>
+
+@*@{
+    Console.WriteLine("data -------------->", Model[0]);
+}
+*@
+<div class="row">
+    <div class="col-md-6"></div>
+    <form class="d-flex" asp-action="DisplayData" asp-controller="Home">
+        <input name="searchString" class="form-control me-1" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-primary" type="submit"> Search By Name</button>
+    </form>
+    <div class="col-md-6">
+        <a asp-action="DisplayData" class="text-dark"> Back to Full List</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            @if (Model.Count > 0)
+            {
+                @foreach (var header in Model[0])
+                {
+                    <th>@header</th>
+                }
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model.Skip(1))
+        {
+            <tr>
+                @foreach (var cell in row)
+                {
+                    <td>@cell</td>
+                }
+            </tr>
+        }
+        @if (!Model.Any())
+        {
+            <tr>
+                <td colspan="100%">No data found</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button id="saveButton">Save Data</button>
+
+<!--<form asp-action="DisplayUniqueEmployees" method="get">
+     <button type="submit">Display Unique Employees</button>
+</form>-->
+
+@* Debug: Display the serialized JSON for ExcelData *@
+    <p>Serialized ExcelData:</p>
+    <pre>@Html.Raw(JsonConvert.SerializeObject(Model))</pre>
+
+
+<form id="uniqueEmployeesForm" asp-action="DisplayUniqueEmployees" method="post">
+    <input type="hidden" name="ExcelData" value="@Html.Raw(JsonConvert.SerializeObject(Model))" />
+    <button type="submit" onclick="submitUniqueEmployeesForm()">Display Unique Employees</button>
+</form>
+
+
+<script>
+
+    function convertExcelDataToDictionary(data) 
+    {
+        // Extract headers from the first row
+        const headers = data[0];
+        return data.slice(1).map(row => {
+            let result = {};
+            row.forEach((cell, index) => {
+                result[headers[index]] = cell;
+            });
+            return result;
+        });
+    }
+
+
+
+
+    document.getElementById('saveButton').addEventListener('click', function () {
+        const data = @Html.Raw(JsonConvert.SerializeObject(Model));
+        Console.WriteLine("data == ",data);
+
+        fetch('/Home/SaveToExcel', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => response.blob())
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'data.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+        })
+        .catch(error => console.error('Error:', error));
+    });
+
+    //console.log(@Html.Raw(JsonConvert.SerializeObject(Model)));
+
+    function submitUniqueEmployeesForm(event) {
+        event.preventDefault(); // Prevent the default form submission
+        const data = @Html.Raw(JsonConvert.SerializeObject(Model));
+        const convertedData = convertExcelDataToDictionary(data);
+        document.getElementById('ExcelDataInput').value = JSON.stringify(convertedData);
+        document.getElementById('uniqueEmployeesForm').submit();
+
+        //var form = document.getElementById('uniqueEmployeesForm');
+        //var excelData = document.querySelector('input[name="ExcelData"]').value;
+        //console.log('Submitting form with ExcelData:', excelData);
+        //form.submit();
+    }
+</script>
+

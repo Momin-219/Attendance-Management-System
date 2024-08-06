@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Login Failed";
+    
+    //ViewData["ShowNavbar"] = true; // Hide the navbar for this view
+    ViewBag.HideLoginButton = true;
+}
+
+@*<h2>Login Failed</h2>
+
+<p>Your login attempt was unsuccessful. Please try again.</p>
+*@
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#failedModal').modal('show');
+        });
+    </script>
+}
+
+<div class="modal fade" id="failedModal" tabindex="-1" role="dialog" aria-labelledby="failedModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header modal-header-failed">
+                <h5 class="modal-title" id="failedModalLabel">OOPS!!</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body modal-body-failed">
+                <div>
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                    @*<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM7.002-.002h2v10H7.002V-.002zM7.002 12h2v2h-2v-2z"/>
+                    </svg>*@
+                </div>
+                @*<div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM7.002-.002h2v10H7.002V-.002zM7.002 12h2v2h-2v-2z"/>
+                    </svg>
+                </div>*@
+                <p>Login Failed!!!</p>
+                <p>Please check your credentials and try again.</p>
+            </div>
+            <div class="modal-footer modal-footer-failed">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<form asp-action="Login" method="get">
+    <button type="submit">Back to Login</button>
+</form>

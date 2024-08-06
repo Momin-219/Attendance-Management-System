@@ -1,0 +1,26 @@
+﻿@*@model List<dynamic>
+@inject Employee 
+@{
+    ViewData["Title"] = "Unique Employees";
+}
+
+<h1>Unique Employees</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in M)
+        {
+            <tr>
+                <td>@employee.EmployeeId</td>
+                <td>@employee.EmployeeName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+*@

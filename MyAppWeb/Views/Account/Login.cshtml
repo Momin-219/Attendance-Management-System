@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    ViewBag.HideLoginButton = true;         //used to hide the login button on navbar
+    int counter = 1;
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post">
+    <div class="form-group">
+        <label for="empId">Employee ID</label>
+        <input type="text" class="form-control" id="empId" name="empId" required />
+    </div>
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required />
+    </div>
+    <button type="submit" class="btn btn-primary" style="margin-top: 20px">Login</button>
+</form>
+
+@*<!-- Bootstrap Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #fff; border-bottom: 1px solid #c3e6cb;">
+                <h5 class="modal-title" id="successModalLabel">Login Successful!</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="text-align: center; background-color: #fff;">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" style="color: #28a745;" width="100" height="100" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.993 10.405l7-7-.707-.707-6.293 6.293L3.854 6.854l-.708.707 3.847 3.847z"/>
+                    </svg>
+                </div>
+                <p>You have logged in successfully!</p>
+            </div>
+            <div class="modal-footer" style="background-color: #fff; border-top: 1px solid #c3e6cb;">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        $(document).ready(function() {
+            $('#successModal').modal('show');
+        });
+    </script>
+}*@
+
+@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewData["ErrorMessage"]
+    </div>
+}
+
