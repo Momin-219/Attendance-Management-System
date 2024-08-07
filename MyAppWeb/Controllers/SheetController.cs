@@ -39,6 +39,68 @@ namespace MyAppWeb.Controllers
             //return View(model);
         }
 
+
+        public IActionResult Details()
+        {
+            var sheets = _sheetRepository.GetSheets();
+            var hoursWorked = _sheetRepository.CalculateHoursWorked(sheets);
+
+            // Prepare data for the view
+            var details = new List<DetailsViewModel>();
+
+            foreach (var empHours in hoursWorked)
+            {
+                int empId = empHours.Key;
+                foreach (var dateHours in empHours.Value)
+                {
+                    string date = dateHours.Key;
+                    TimeSpan totalHours = dateHours.Value;
+
+                    // Add record to the details list
+                    details.Add(new DetailsViewModel
+                    {
+                        EmpID = empId,
+                        Name = sheets.First(s => s.EmpID == empId).Name,
+                        Date = date,
+                        HoursWorked = totalHours
+                    });
+                }
+            }
+
+            return View(details);
+        }
+
+
+        //public IActionResult Details()
+        //{
+        //    var sheets = _sheetRepository.GetSheets();
+        //    var hoursSpent = _sheetRepository.CalculateHoursSpent(sheets);
+
+        //    // Prepare data for the view
+        //    var details = new List<DetailsViewModel>();
+
+        //    foreach (var empHours in hoursSpent)
+        //    {
+        //        int empId = empHours.Key;
+        //        foreach (var dateHours in empHours.Value)
+        //        {
+        //            string date = dateHours.Key;
+        //            TimeSpan totalHours = dateHours.Value;
+
+        //            // Add record to the details list
+        //            details.Add(new DetailsViewModel
+        //            {
+        //                EmpID = empId,
+        //                Name = sheets.First(s => s.EmpID == empId).Name,
+        //                Date = date,
+        //                HoursWorked = totalHours
+        //            });
+        //        }
+        //    }
+
+        //    return View(details);
+        //}
+
         // Other actions like Create, Edit, Delete can be added here
 
         public IActionResult Index1()

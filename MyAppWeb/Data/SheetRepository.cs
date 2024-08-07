@@ -87,6 +87,89 @@ namespace MyAppWeb.Data
         }
 
 
+        public Dictionary<int, Dictionary<string, TimeSpan>> CalculateHoursWorked(IEnumerable<SheetViewModel> sheets)
+        {
+            var hoursWorked = new Dictionary<int, Dictionary<string, TimeSpan>>();
+
+            // Group by employee and date
+            var groupedSheets = sheets
+                .GroupBy(s => new { s.EmpID, s.Date })
+                .ToList();
+
+            foreach (var group in groupedSheets)
+            {
+                int empId = group.Key.EmpID;
+                string date = group.Key.Date;
+                var empHours = new Dictionary<string, TimeSpan>();
+
+                TimeSpan firstTimeIn = TimeSpan.Zero;
+                TimeSpan lastTimeOut = TimeSpan.Zero;
+
+                foreach (var sheet in group)
+                {
+                    if (sheet.TimeIn != TimeSpan.Zero)
+                    {
+                        if (firstTimeIn == TimeSpan.Zero || sheet.TimeIn < firstTimeIn)
+                        {
+                            firstTimeIn = sheet.TimeIn;
+                        }
+                    }
+
+                    if (sheet.TimeOut != TimeSpan.Zero)
+                    {
+                        lastTimeOut = sheet.TimeOut;
+                    }
+                }
+
+                if (firstTimeIn != TimeSpan.Zero && lastTimeOut != TimeSpan.Zero)
+                {
+                    empHours[date] = lastTimeOut - firstTimeIn;
+                }
+
+                if (!hoursWorked.ContainsKey(empId))
+                {
+                    hoursWorked[empId] = new Dictionary<string, TimeSpan>();
+                }
+
+                hoursWorked[empId][date] = empHours.ContainsKey(date) ? empHours[date] : TimeSpan.Zero;
+            }
+
+            return hoursWorked;
+        }
+
+
+        //public Dictionary<int, Dictionary<string, TimeSpan>> CalculateHoursSpent(IEnumerable<SheetViewModel> sheets)
+        //{
+        //    var hoursSpent = new Dictionary<int, Dictionary<string, TimeSpan>>();
+
+        //    foreach (var sheet in sheets)
+        //    {
+        //        if (!hoursSpent.ContainsKey(sheet.EmpID))
+        //        {
+        //            hoursSpent[sheet.EmpID] = new Dictionary<string, TimeSpan>();
+        //        }
+        //        //Console.WriteLine("MMomin -> ", hoursSpent);
+        //        var empHours = hoursSpent[sheet.EmpID];
+        //        var dateKey = sheet.Date;
+
+        //        if (!empHours.ContainsKey(dateKey))
+        //        {
+        //            empHours[dateKey] = TimeSpan.Zero;
+        //        }
+
+        //        var currentDateHours = empHours[dateKey];
+        //        if (sheet.TimeIn != TimeSpan.Zero && sheet.TimeOut != TimeSpan.Zero)
+        //        {
+        //            var hoursForDay = sheet.TimeOut - sheet.TimeIn;
+        //            empHours[dateKey] += hoursForDay;
+        //        }
+        //    }
+        //    //Console.WriteLine("Momin", hoursSpent);
+        //    return hoursSpent;
+
+        //}
+
+
         public IEnumerable<SheetViewModel> GetAttendanceRecordsByEmpId(int empId)
         {
             var attendanceRecords = new List<SheetViewModel>();
@@ -103,7 +186,7 @@ namespace MyAppWeb.Data
                     {
                         var timeValue = reader.GetString(reader.GetOrdinal("Time"));
                         var dateTimeParts = timeValue.Split(' ');
-                        Console.WriteLine(dateTimeParts[0]);
+                        //Console.WriteLine(dateTimeParts[0]);
 
                         attendanceRecords.Add(new SheetViewModel
                         {
