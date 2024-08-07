@@ -1,0 +1,55 @@
+﻿@*namespace MyAppWeb.Views.Sheet
+{
+    public class Details
+    {
+    }
+}*@
+
+@model IEnumerable<MyAppWeb.ViewModels.DetailsViewModel>
+
+@{
+    ViewBag.Title = "Employee Attendance Details";
+    ViewBag.HideLoginButton = true;
+}
+
+<h2>Employee Attendance Details</h2>
+
+@*<style>
+    .highlight-low-hours {
+        background-color: red;
+        color: white;
+    }
+</style>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Emp ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Hours Worked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model)
+        {
+            var hoursWorked = detail.HoursWorked;
+            var rowStyle = hoursWorked < TimeSpan.FromHours(9) 
+                ? "background-color: red; color: white;" 
+                : "background-color: green; color: white;";
+            Console.WriteLine(@detail.HoursWorked);
+            <tr style="@rowStyle">
+                <td>@detail.EmpID</td>
+                <td>@detail.Name</td>
+                <td>@detail.Date</td>
+                @*<td>@detail.HoursWorked.ToString(@"hh\:mm\:ss")</td>*@
+                <td>@detail.HoursWorked</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Back button -->
+<div class="mt-3">
+    <button onclick="window.history.back();" class="btn btn-secondary">Back</button>
+</div>
