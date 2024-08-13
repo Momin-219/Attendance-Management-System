@@ -25,7 +25,7 @@ namespace MyAppWeb.Data
         }
 
         [HttpGet]
-        public IEnumerable<SheetViewModel> GetSheets()
+        public List<SheetViewModel> GetSheets()
         {
             var sheets = new List<SheetViewModel>();
 
@@ -54,11 +54,11 @@ namespace MyAppWeb.Data
                         TimeSpan timeSpan;
                         if (TimeSpan.TryParse(timePart, out timeSpan))
                         {
-                            if (attendanceState) // Assuming true is for check-in
+                            if (attendanceState)                // Assuming true is for check-out
                             {
                                 timeOut = timeSpan;
                             }
-                            else // Assuming false is for check-out
+                            else                                // Assuming false is for check-in
                             {
                                 timeIn = timeSpan;
                             }
@@ -85,6 +85,72 @@ namespace MyAppWeb.Data
 
             return sheets;
         }
+
+
+
+        public List<SheetViewModel> GetAttendanceRecordsByEmpId(int empId)
+        {
+            var attendanceRecords = new List<SheetViewModel>();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand("SELECT EmpID, Name,Time, AttendanceState FROM Sheet WHERE EmpID = @EmpID", connection);
+                command.Parameters.AddWithValue("@EmpID", empId);
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var timeValue = reader.GetString(reader.GetOrdinal("Time"));
+                        var dateTimeParts = timeValue.Split(' ');
+
+                        var timePart = dateTimeParts[1];
+                        var attendanceState = reader.GetBoolean(reader.GetOrdinal("AttendanceState"));
+
+                        TimeSpan timeIn = TimeSpan.Zero;
+                        TimeSpan timeOut = TimeSpan.Zero;
+
+                        //var timeIn = "-";
+                        //var timeOut = "-";
+
+                        // Convert timePart to TimeSpan
+                        TimeSpan timeSpan;
+                        if (TimeSpan.TryParse(timePart, out timeSpan))
+                        {
+                            if (attendanceState)                // Assuming true is for check-out
+                            {
+                                timeOut = timeSpan;
+                            }
+                            else                                // Assuming false is for check-in
+                            {
+                                timeIn = timeSpan;
+                            }
+                        }
+
+                        attendanceRecords.Add(new SheetViewModel
+                        {
+                            EmpID = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            //Time = reader.GetString(reader.GetOrdinal("Time")),
+                            //Time = reader.GetDateTime(reader.GetOrdinal("Time")),
+                            /* Date = DateTime.ParseExact(dateTimeParts[0], "MM,dd,yyyy", CultureInfo.InvariantCulture),*/ // Extract and parse date
+                            Date = dateTimeParts[0],
+                            //Time = TimeSpan.Parse(dateTimeParts[1]), // Extract and parse time
+                            TimeIn = timeIn,
+                            TimeOut = timeOut,
+                            //WorkCode = reader.GetString(3),
+                            AttendanceState = reader.GetBoolean(reader.GetOrdinal("AttendanceState")),
+                            //DeviceName = reader.GetString(5)
+                        });
+                    }
+                }
+            }
+
+            return attendanceRecords;
+        }
+
+
 
 
         public Dictionary<int, Dictionary<string, TimeSpan>> CalculateHoursWorked(IEnumerable<SheetViewModel> sheets)
@@ -170,43 +236,43 @@ namespace MyAppWeb.Data
         //}
 
 
-        public IEnumerable<SheetViewModel> GetAttendanceRecordsByEmpId(int empId)
-        {
-            var attendanceRecords = new List<SheetViewModel>();
+        //public IEnumerable<SheetViewModel> GetAttendanceRecordsByEmpId(int empId)
+        //{
+        //    var attendanceRecords = new List<SheetViewModel>();
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var command = new SqlCommand("SELECT EmpID, Name,Time, AttendanceState FROM Sheet WHERE EmpID = @EmpID", connection);
-                command.Parameters.AddWithValue("@EmpID", empId);
-                connection.Open();
+        //    using (var connection = new SqlConnection(_connectionString))
+        //    {
+        //        var command = new SqlCommand("SELECT EmpID, Name,Time, AttendanceState FROM Sheet WHERE EmpID = @EmpID", connection);
+        //        command.Parameters.AddWithValue("@EmpID", empId);
+        //        connection.Open();
 
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        var timeValue = reader.GetString(reader.GetOrdinal("Time"));
-                        var dateTimeParts = timeValue.Split(' ');
-                        //Console.WriteLine(dateTimeParts[0]);
+        //        using (var reader = command.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                var timeValue = reader.GetString(reader.GetOrdinal("Time"));
+        //                var dateTimeParts = timeValue.Split(' ');
+        //                //Console.WriteLine(dateTimeParts[0]);
 
-                        attendanceRecords.Add(new SheetViewModel
-                        {
-                            EmpID = reader.GetInt32(0),
-                            Name = reader.GetString(1),
-                            //Time = reader.GetString(reader.GetOrdinal("Time")),
-                            //Time = reader.GetDateTime(reader.GetOrdinal("Time")),
-                            /* Date = DateTime.ParseExact(dateTimeParts[0], "MM,dd,yyyy", CultureInfo.InvariantCulture),*/ // Extract and parse date
-                            Date= dateTimeParts[0],
-                            Time = TimeSpan.Parse(dateTimeParts[1]), // Extract and parse time
-                            //WorkCode = reader.GetString(3),
-                            AttendanceState = reader.GetBoolean(reader.GetOrdinal("AttendanceState")),
-                            //DeviceName = reader.GetString(5)
-                        }) ;
-                    }
-                }
-            }
+        //                attendanceRecords.Add(new SheetViewModel
+        //                {
+        //                    EmpID = reader.GetInt32(0),
+        //                    Name = reader.GetString(1),
+        //                    //Time = reader.GetString(reader.GetOrdinal("Time")),
+        //                    //Time = reader.GetDateTime(reader.GetOrdinal("Time")),
+        //                    /* Date = DateTime.ParseExact(dateTimeParts[0], "MM,dd,yyyy", CultureInfo.InvariantCulture),*/ // Extract and parse date
+        //                    Date= dateTimeParts[0],
+        //                    Time = TimeSpan.Parse(dateTimeParts[1]), // Extract and parse time
+        //                    //WorkCode = reader.GetString(3),
+        //                    AttendanceState = reader.GetBoolean(reader.GetOrdinal("AttendanceState")),
+        //                    //DeviceName = reader.GetString(5)
+        //                }) ;
+        //            }
+        //        }
+        //    }
 
-            return attendanceRecords;
-        }
+        //    return attendanceRecords;
+        //}
 
 
     }

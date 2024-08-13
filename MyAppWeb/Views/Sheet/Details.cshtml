@@ -10,9 +10,67 @@
 @{
     ViewBag.Title = "Employee Attendance Details";
     ViewBag.HideLoginButton = true;
+
+    var userId = ViewBag.UserId ?? "User"; // Fallback if the session is empty
+    var userName = ViewBag.UserName ?? "User"; // Fallback if the session is empty
+    var userRole = ViewBag.UserRole ?? "User"; // Fallback if the session is empty
+
+
 }
 
 <h2>Employee Attendance Details</h2>
+
+@*<p>Welcome <strong>@userName!! </strong> with role : <strong>@userRole, </strong>having Employee-Id: <strong>@userId</strong></p>
+*@
+
+
+@*<!-- Modal -->
+<div class="modal fade" id="userInfoModal" tabindex="-1" role="dialog" aria-labelledby="userInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userInfoModalLabel">Welcome Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Welcome <strong>@userName!!</strong> with role: <strong>@userRole</strong>, having Employee-Id: <strong>@userId</strong></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #fff; border-bottom: 1px solid #c3e6cb;">
+                    <h5 class="modal-title" id="successModalLabel">Login Successful!</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="text-align: center; background-color: #fff;">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" style="color: #28a745;" width="100" height="100" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.993 10.405l7-7-.707-.707-6.293 6.293L3.854 6.854l-.708.707 3.847 3.847z"/>
+                        </svg>
+                    </div>
+                    <p>You have logged in successfully!</p>
+                </div>
+                <div class="modal-footer" style="background-color: #fff; border-top: 1px solid #c3e6cb;">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
 @*<style>
     .highlight-low-hours {
@@ -20,6 +78,44 @@
         color: white;
     }
 </style>*@
+
+
+
+@section AdditionalNavbarItems 
+{
+    @if(userRole == "Admin" || userRole == "HR")
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Index">Employees</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Sheet" asp-action="Index">Attendance Records</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Sheet" asp-action="Index">Detailed Check-In / Check-Outs</a>
+        </li>
+    }
+}
+
+
+
+@section UserMenu {
+    <li class="nav-item dropdown" style="margin-right: 40px">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="~/user-icon.png" alt="User Icon" style="height: 30px; width: 30px; border-radius: 50%;" />
+        </a>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">@userName</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Logout">Log-Out</a></li>
+        </ul>
+    </li>
+}
+
+
 
 <table class="table">
     <thead>
@@ -34,7 +130,7 @@
         @foreach (var detail in Model)
         {
             var hoursWorked = detail.HoursWorked;
-            var rowStyle = hoursWorked < TimeSpan.FromHours(9) 
+            var rowStyle = hoursWorked < TimeSpan.FromHours(8.45) 
                 ? "background-color: red; color: white;" 
                 : "background-color: green; color: white;";
             Console.WriteLine(@detail.HoursWorked);
@@ -49,7 +145,29 @@
     </tbody>
 </table>
 
+<!-- Navigation to details page -->
+@*<div class="mt-3">
+    <a href="@Url.Action("LoginSuccess", "Account")" class="btn btn-primary">Details</a>
+</div>*@
+
 <!-- Back button -->
-<div class="mt-3">
+@*<div class="mt-3">
     <button onclick="window.history.back();" class="btn btn-secondary">Back</button>
 </div>
+*@
+
+@*<script>
+    $(document).ready(function() {
+        // Show the modal when the page loads
+        $('#userInfoModal').modal('show');
+    });
+</script>*@
+
+<script>
+    $(document).ready(function() {
+        if (!sessionStorage.getItem('modalShown')) {
+            $('#userInfoModal').modal('show');
+            sessionStorage.setItem('modalShown', 'true');
+        }
+    });
+</script>

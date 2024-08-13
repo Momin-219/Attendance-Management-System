@@ -27,14 +27,25 @@ namespace MyAppWeb.Controllers
             //{
             //    Sheets = _sheetRepository.GetSheets().ToList()
             //};
-            var sheets = _sheetRepository.GetSheets();
-
+            var userName = HttpContext.Session.GetString("UserName");
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var userRole = HttpContext.Session.GetString("UserRole");
+            List<SheetViewModel> activitysheet = new List<SheetViewModel>();
+            if (userRole=="Admin" || userRole == "HR")
+            {
+                activitysheet= _sheetRepository.GetSheets();
+            }
+            else
+            {
+                activitysheet = _sheetRepository.GetAttendanceRecordsByEmpId(Convert.ToInt32(userId));
+            }
+           
             //foreach (var sheet in sheets)
             //{
             //    Console.WriteLine($"EmpID: {sheet.EmpID}, Name: {sheet.Name}, Time: {sheet.Time}, WorkCode: {sheet.WorkCode}, AttendanceState: {sheet.AttendanceState}, DeviceName: {sheet.DeviceName}");
             //}
 
-            return View(sheets); // Returns Views/Sheet/Index.cshtml
+            return View(activitysheet); // Returns Views/Sheet/Index.cshtml
 
             //return View(model);
         }
@@ -42,7 +53,43 @@ namespace MyAppWeb.Controllers
 
         public IActionResult Details()
         {
+
+            var userName = HttpContext.Session.GetString("UserName");
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var userRole = HttpContext.Session.GetString("UserRole");
+
+
+
+            if (string.IsNullOrEmpty(userName))
+            {
+                return RedirectToAction("Login");
+            }
+
+            Console.WriteLine("Details Action running in the Sheet Controller ");
+            // Debug or log the values
+            //System.Diagnostics.Debug.WriteLine($"UserName: {userName}, UserId: {userId}, UserRole: {userRole}");
+
+
+            ViewBag.UserId = userId;
+            ViewBag.UserName = userName;
+            ViewBag.UserRole = userRole;
+
+            
+
+
             var sheets = _sheetRepository.GetSheets();
+
+            if(userRole=="Admin" || userRole == "HR")
+            {
+                sheets = _sheetRepository.GetSheets();
+            }
+            else
+            {
+                sheets = _sheetRepository.GetAttendanceRecordsByEmpId(userId.Value);
+            }
+
+
+
             var hoursWorked = _sheetRepository.CalculateHoursWorked(sheets);
 
             // Prepare data for the view
