@@ -7,8 +7,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyAppWeb.styles.css" asp-append-version="true" />
+    @*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">*@
+
 </head>
 <body>
+    
+
     <header>
         @if (ViewData["ShowNavbar"] == null || (bool)ViewData["ShowNavbar"])
         {
@@ -42,7 +46,13 @@
                         </li>*@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @*</li>
+                           <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="sheet" asp-action="index">All Activities</a>
+                        </li>*@
+                         @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="sheet" asp-action="details">Working Houre</a>
+                        </li>*@
                         @*<li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Log-In</a>
                         </li>*@
@@ -76,6 +86,11 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Include Popper.js -->
+    @*<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>*@
+
+
+
     @await RenderSectionAsync("Scripts", required: false)
 
     @if (ViewData["ShowModal"] as bool? == true)
@@ -89,7 +104,7 @@
             });
         </script>
     }
-
+    
 
 </body>
 </html>

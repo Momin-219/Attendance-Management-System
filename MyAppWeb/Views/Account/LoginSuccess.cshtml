@@ -1,5 +1,11 @@
-﻿@model IEnumerable<MyAppWeb.ViewModels.SheetViewModel>
+﻿
 
+
+
+@model IEnumerable<MyAppWeb.ViewModels.SheetViewModel>                  //this view is going to receive data in the form of a list or an array of type SheetViewModel object!!!
+
+
+@*@model IEnumerable<MyAppWeb.ViewModels.DetailsViewModel>*@
 @{
     ViewData["Title"] = "Login Success";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,6 +18,11 @@
     // Determine if the modal should be shown
     bool showModal = TempData["ShowModal"] != null && (bool)TempData["ShowModal"];
 }
+
+@*@{
+    ViewBag.Title = "Employee Attendance Details";
+    ViewBag.HideLoginButton = true;
+}*@
 
 <p>Welcome <strong>@userName!! </strong> with role : <strong>@userRole, </strong>having Employee-Id: <strong>@userId</strong> showModal : @showModal</p>
 
@@ -69,12 +80,13 @@
     </div>
 }
 
-@section Scripts {
+@section Scripts 
+{
     @await Html.PartialAsync("_ValidationScriptsPartial")
     <script>
         $(document).ready(function() {
             if (!sessionStorage.getItem('modalShown')) {
-                @* Show the modal if the condition is met *@
+                @* Show the modal if the condition is met *@         //this is a comment
                 $('#successModal').modal('show');
                 sessionStorage.setItem('modalShown', 'true');
             }
@@ -91,7 +103,8 @@
                 <th>EmpID</th>
                 <th>Name</th>
                 <th>Date</th>
-                <th>Time</th>
+                <th>Time-In</th>
+                <th>Time-Out</th>
                 <th>Attendance State</th>
             </tr>
         </thead>
@@ -102,7 +115,8 @@
                     <td>@record.EmpID</td>
                     <td>@record.Name</td>
                     <td>@record.Date</td>
-                    <td>@record.Time</td>
+                    <td>@record.TimeIn</td>
+                    <td>@record.TimeOut</td>
                     <td>@(record.AttendanceState ? "Check-Out" : "Check-In")</td>
                 </tr>
             }
@@ -113,3 +127,52 @@ else
 {
     <p>No attendance records found.</p>
 }
+
+
+@*      below is testing!!!       *@
+
+
+@*@{
+    ViewBag.Title = "Employee Attendance Details";
+    ViewBag.HideLoginButton = true;
+}
+
+<h2>Employee Attendance Details</h2>*@
+
+@*<style>
+    .highlight-low-hours {
+        background-color: red;
+        color: white;
+    }
+</style>*@
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>Emp ID</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Hours Worked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model)
+        {
+            var hoursWorked = detail.HoursWorked;
+            var rowStyle = hoursWorked < TimeSpan.FromHours(9) 
+                ? "background-color: red; color: white;" 
+                : "background-color: green; color: white;";
+            Console.WriteLine(@detail.HoursWorked);
+            <tr style="@rowStyle">
+                <td>@detail.EmpID</td>
+                <td>@detail.Name</td>
+                <td>@detail.Date</td>
+                @*<td>@detail.HoursWorked.ToString(@"hh\:mm\:ss")</td>
+                <td>@detail.HoursWorked</td>
+            </tr>
+        }
+    </tbody>
+</table>
+*@
+
+

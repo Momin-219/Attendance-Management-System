@@ -3,39 +3,17 @@ i:{00000000-0000-0000-0000-000000000000}:MyApp.sln
 ++MyAppWeb
 i:{00000000-0000-0000-0000-000000000000}:MyAppWeb
 ++Connected Services 
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>479
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1035
 ++Dependencies
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>478
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1034
 ++Properties
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\properties\
-++launchSettings.json
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\properties\launchsettings.json
 ++wwwroot
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\
-++css
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\css\
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\dist\css\
-++site.css
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\css\site.css
-++js
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\js\
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\dist\js\
-++site.js
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\js\site.js
-++lib
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\
-++bootstrap
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\
-++jquery
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery\
-++jquery-validation
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery-validation\
-++jquery-validation-unobtrusive
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery-validation-unobtrusive\
-++favicon.ico
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\favicon.ico
 ++Controllers
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\controllers\
+++AccountController.cs
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\controllers\accountcontroller.cs
 ++EmployeeControler.cs
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\controllers\employeecontroler.cs
 ++HomeController.cs
@@ -62,6 +40,8 @@ i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myapp
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\services\
 ++ViewModels
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\viewmodels\
+++DetailsViewModel.cs
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\viewmodels\detailsviewmodel.cs
 ++EmployeeViewModel.cs
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\viewmodels\employeeviewmodel.cs
 ++IndexViewModel.cs
@@ -70,6 +50,14 @@ i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myapp
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\viewmodels\sheetviewmodel.cs
 ++Views
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\
+++Account
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\account\
+++Login.cshtml
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\account\login.cshtml
+++LoginFailed.cshtml
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\account\loginfailed.cshtml
+++LoginSuccess.cshtml
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\account\loginsuccess.cshtml
 ++Employee
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\employee\
 ++Index.cshtml
@@ -88,26 +76,66 @@ i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myapp
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\shared\
 ++_Layout.cshtml
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\shared\_layout.cshtml
+++_Layout.cshtml.css
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\shared\_layout.cshtml.css
 ++_ValidationScriptsPartial.cshtml
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\shared\_validationscriptspartial.cshtml
 ++Error.cshtml
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\shared\error.cshtml
+++logo.jpg
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\shared\logo.jpg
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\logo.jpg
 ++Sheet
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\sheet\
+++Details.cshtml
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\sheet\details.cshtml
+++Index1.cshtml
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\sheet\index1.cshtml
 ++_ViewImports.cshtml
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\_viewimports.cshtml
 ++_ViewStart.cshtml
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\_viewstart.cshtml
 ++appsettings.json
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\appsettings.json
-++appsettings.Development.json
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\appsettings.development.json
+++pic31.jpg
 ++Program.cs
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\program.cs
 ++No service dependencies discovered
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>480
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1036
 ++Analyzers
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:analyzers
+++Frameworks
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:frameworks
+++Packages
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:packages
+++launchSettings.json
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\properties\launchsettings.json
+++css
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\css\
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\dist\css\
+++js
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\js\
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\dist\js\
+++lib
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\
+++favicon.ico
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\favicon.ico
+++image1.jfif
+++image2.jfif
+++image3.jfif
+++image4.jfif
+++pic1.jpg
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\pic1.jpg
+++pic2.jpg
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\pic2.jpg
+++pic3.jpg
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\pic3.jpg
+++user-icon.png
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\user-icon.png
+++appsettings.Development.json
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\appsettings.development.json
+++MessagePackAnalyzer
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\.nuget\packages\messagepackanalyzer\2.1.152\analyzers\dotnet\messagepackanalyzer.dll
 ++Microsoft.AspNetCore.Analyzers
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
 ++Microsoft.AspNetCore.App.Analyzers
@@ -120,6 +148,10 @@ i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\program files\dotnet\sdk\6.0.101\sdk
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
 ++Microsoft.AspNetCore.Razor.Internal.SourceGenerator.Transport
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.razor\source-generators\microsoft.aspnetcore.razor.internal.sourcegenerator.transport.dll
+++Microsoft.CodeAnalysis.Analyzers
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
+++Microsoft.CodeAnalysis.CSharp.Analyzers
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
 ++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
 ++Microsoft.CodeAnalysis.NetAnalyzers
@@ -132,10 +164,38 @@ i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\program files\dotnet\packs\microsoft
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk.razor\source-generators\microsoft.net.sdk.razor.sourcegenerators.dll
 ++System.Text.Json.SourceGeneration
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\.nuget\packages\system.text.json\8.0.0\analyzers\dotnet\roslyn4.0\cs\system.text.json.sourcegeneration.dll
-++Frameworks
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:frameworks
-++Packages
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:packages
+++Microsoft.AspNetCore.App
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\microsoft.netcore.app
+++EPPlus (7.2.1)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1061
+++Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.14)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1062
+++Microsoft.Data.SqlClient (5.2.1)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1058
+++Microsoft.EntityFrameworkCore (6.0.1)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1057
+++Microsoft.EntityFrameworkCore.SqlServer (6.0.1)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1059
+++Microsoft.EntityFrameworkCore.Tools (6.0.1)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1063
+++Microsoft.VisualStudio.Web.CodeGeneration.Design (6.0.17)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1064
+++Swashbuckle.AspNetCore (6.6.2)
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1060
+++site.css
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\css\site.css
+++site.js
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\js\site.js
+++bootstrap
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\
+++jquery
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery\
+++jquery-validation
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery-validation\
+++jquery-validation-unobtrusive
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery-validation-unobtrusive\
 ++dist
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\dist\
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery\dist\
@@ -149,24 +209,6 @@ i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myapp
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery-validation\license.md
 ++jquery.validate.unobtrusive.js
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
-++_Layout.cshtml.css
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\shared\_layout.cshtml.css
-++Microsoft.AspNetCore.App
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\microsoft.aspnetcore.app
-++Microsoft.NETCore.App
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\microsoft.netcore.app
-++EPPlus (7.2.1)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>493
-++Microsoft.AspNetCore.Mvc.NewtonsoftJson (6.0.14)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>494
-++Microsoft.Data.SqlClient (5.2.1)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>529
-++Microsoft.EntityFrameworkCore (6.0.1)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>491
-++Microsoft.EntityFrameworkCore.SqlServer (6.0.1)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>492
-++Microsoft.EntityFrameworkCore.Tools (6.0.1)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>495
 ++jquery.js
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\jquery\dist\jquery.js
 ++additional-methods.js
@@ -271,15 +313,6 @@ i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myapp
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
 ++bootstrap.esm.min.js.map
 i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-++Microsoft.VisualStudio.Web.CodeGeneration.Design (6.0.17)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>1060
-++Swashbuckle.AspNetCore (6.6.2)
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:>616
-++MessagePackAnalyzer
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\.nuget\packages\messagepackanalyzer\2.1.152\analyzers\dotnet\messagepackanalyzer.dll
-++Microsoft.CodeAnalysis.Analyzers
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
-++Microsoft.CodeAnalysis.CSharp.Analyzers
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\.nuget\packages\microsoft.codeanalysis.analyzers\3.3.2\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
-++Index1.cshtml
-i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\views\sheet\index1.cshtml
+++gggg.jpg
+i:{79de7afd-8fc9-4d06-87d5-a1f2199ce073}:c:\users\admin\desktop\temp\myapp\myappweb\gggg.jpg
+++ccc.jpg

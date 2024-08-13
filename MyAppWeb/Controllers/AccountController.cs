@@ -11,6 +11,8 @@ using MyAppWeb.Data;
 using MyAppWeb.Models;
 using System.Linq;
 using Microsoft.AspNetCore.Authentication;
+using MyAppWeb.ViewModels;                  // Replace with the correct namespace
+
 
 
 namespace MyAppWeb.Controllers
@@ -49,9 +51,25 @@ namespace MyAppWeb.Controllers
                 HttpContext.Session.SetString("UserName", employee.Name);
                 HttpContext.Session.SetString("UserRole", employee.Role);
 
+
+                var userName = HttpContext.Session.GetString("UserName");           //Retrieve session values at login
+                var userId = HttpContext.Session.GetInt32("UserId");
+                var userRole = HttpContext.Session.GetString("UserRole");
+
+                Console.WriteLine("This is Login() action in Account Controller\n");
+                Console.WriteLine("UserName -> ", userName);
+
+                //userRole = user.Role;
+                ViewBag.UserId = userId;
+                ViewBag.UserName = userName;        // Passing username to the view
+                ViewBag.UserRole = userRole;        // Passing user role to the view
+
+                Console.WriteLine("after viewbag UserName -> ", userName);
+
                 TempData["ShowModal"] = true;
                 // Authentication successful
-                return RedirectToAction("LoginSuccess");
+                //return RedirectToAction("LoginSuccess");
+                return RedirectToAction("Details","Sheet");
             }
 
             // If login fails, return the view with an error message
@@ -65,7 +83,7 @@ namespace MyAppWeb.Controllers
         [HttpGet]
         public IActionResult LoginSuccess()
         {
-            var userName = HttpContext.Session.GetString("UserName");
+            var userName = HttpContext.Session.GetString("UserName");           //Retrieve session values at login
             var userId = HttpContext.Session.GetInt32("UserId");
             var userRole = HttpContext.Session.GetString("UserRole");
 
@@ -94,22 +112,46 @@ namespace MyAppWeb.Controllers
             var attendanceRecords = _sheetRepository.GetAttendanceRecordsByEmpId(userId.Value);
 
 
-            // Get the current counter value from session, default to 0 if not set
-            var counter = HttpContext.Session.GetInt32("Counter") ?? 0;
+            return View(attendanceRecords);
+        }
 
-            // Increment the counter
-            counter++;
+        [HttpGet]
+        public IActionResult Details()
+        {
+            var userName = HttpContext.Session.GetString("UserName");
+            var userId = HttpContext.Session.GetInt32("UserId");
+            var userRole = HttpContext.Session.GetString("UserRole");
 
-            // Save the counter back to session
-            HttpContext.Session.SetInt32("Counter", counter);
+            if (string.IsNullOrEmpty(userName))
+            {
+                return RedirectToAction("Login");
+            }
 
-            // Pass the counter to the view
-            ViewBag.Counter = counter;
+            Console.WriteLine("Details Action running:");
+            // Debug or log the values
+            //System.Diagnostics.Debug.WriteLine($"UserName: {userName}, UserId: {userId}, UserRole: {userRole}");
 
 
+            ViewBag.UserId = userId;
+            ViewBag.UserName = userName;
+            ViewBag.UserRole = userRole;
+
+            IEnumerable<SheetViewModel> attendanceRecords;
+
+            if (userRole == "Admin" || userRole == "HR")
+            {
+                // Fetch all records
+                attendanceRecords = _sheetRepository.GetSheets();
+            }
+            else
+            {
+                // Fetch records for the logged-in user only
+                attendanceRecords = _sheetRepository.GetAttendanceRecordsByEmpId(userId.Value);
+            }
 
             return View(attendanceRecords);
         }
+
 
         [HttpGet]
         public IActionResult LoginFailed()
